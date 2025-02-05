@@ -14,13 +14,13 @@
 - Routing with React Router
 
 
-# React Components
+# React Components, Props, and JSX
 
 React components are the **building blocks** of a React application. They help break down the UI into **reusable**, **independent**, and **manageable** pieces.
 
 ---
 
-## Types of Components in React
+## Components in React
 
 ### 1. Functional Components (Stateless Components)
 - Simple JavaScript functions that return JSX.
@@ -68,126 +68,55 @@ export default Counter;
 
 ---
 
-### 3. Pure Components
-- **Class-based components** that prevent unnecessary re-renders.
-- Improves performance by **reducing unnecessary DOM updates**.
+## Props in React
+
+- **Props (short for Properties)** are used to pass data from a parent component to a child component.
+- They are **read-only** and **cannot be modified** inside the child component.
 
 ```jsx
-import React, { PureComponent } from 'react';
-
-class PureComp extends PureComponent {
-  render() {
-    console.log("Pure Component Rendered");
-    return <h1>Pure Component Example</h1>;
-  }
-}
-
-export default PureComp;
-```
-
----
-
-### 4. Higher-Order Components (HOC)
-- A pattern where a function **takes a component as input** and **returns a new component** with added functionality.
-- Used for **code reuse**, **conditional rendering**, and **authentication**.
-
-```jsx
-function withLogger(WrappedComponent) {
-  return function EnhancedComponent(props) {
-    console.log("Logging Props:", props);
-    return <WrappedComponent {...props} />;
-  };
-}
-```
-
----
-
-### 5. Controlled & Uncontrolled Components
-
-#### **Controlled Components:**
-- React **controls the value** through `useState` or `this.state`.
-- Input values update via **onChange handlers**.
-
-```jsx
-function ControlledInput() {
-  const [name, setName] = React.useState("");
-
+function UserProfile({ name, age }) {
   return (
-    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+    <div>
+      <h2>Name: {name}</h2>
+      <p>Age: {age}</p>
+    </div>
   );
 }
-```
-
-#### **Uncontrolled Components:**
-- React **does not control** the form input values. Instead, it accesses them via `ref`.
-
-```jsx
-import React, { useRef } from "react";
-
-function UncontrolledInput() {
-  const inputRef = useRef(null);
-
-  const handleSubmit = () => {
-    alert(inputRef.current.value);
-  };
-
-  return (
-    <>
-      <input type="text" ref={inputRef} />
-      <button onClick={handleSubmit}>Submit</button>
-    </>
-  );
-}
-```
-
----
-
-### 6. Presentational vs Container Components
-
-#### **Presentational Components:**
-- Only responsible for **UI rendering**.
-- **Do not** have state or logic.
-
-```jsx
-function UserCard({ name }) {
-  return <h2>User: {name}</h2>;
-}
-```
-
-#### **Container Components:**
-- Handle **logic, state, and data fetching**.
-- Pass data to presentational components.
-
-```jsx
-import React, { useState } from "react";
-import UserCard from "./UserCard";
-
-function UserContainer() {
-  const [user, setUser] = useState("Saad Khan");
-
-  return <UserCard name={user} />;
-}
-```
-
----
-
-### 7. Lazy Loaded Components (React.lazy & Suspense)
-- **Loads components dynamically** when needed to improve performance.
-
-```jsx
-import React, { Suspense, lazy } from "react";
-
-const LazyComponent = lazy(() => import("./HeavyComponent"));
 
 function App() {
-  return (
-    <Suspense fallback={<h2>Loading...</h2>}>
-      <LazyComponent />
-    </Suspense>
-  );
+  return <UserProfile name="Saad Khan" age={28} />;
 }
 ```
 
 ---
+
+## JSX in React
+
+- **JSX (JavaScript XML)** is a syntax extension that allows writing HTML-like code inside JavaScript.
+- It makes the code more readable and expressive.
+
+### Features of JSX
+1. **Looks like HTML** but is transpiled to JavaScript.
+2. **Allows embedding expressions using `{}`**.
+3. **Must have a single parent element**.
+4. **Attributes are written in camelCase (e.g., `className` instead of `class`)**.
+
+```jsx
+const element = <h1>Hello, {name}!</h1>;
+```
+
+### JSX vs JavaScript
+
+JSX:
+```jsx
+const heading = <h1>Hello, React!</h1>;
+```
+JavaScript (without JSX):
+```jsx
+const heading = React.createElement('h1', null, 'Hello, React!');
+```
+
+---
+
 
 
