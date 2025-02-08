@@ -118,5 +118,35 @@ const heading = React.createElement('h1', null, 'Hello, React!');
 
 ---
 
+### Hooks
 
+- React hooks are special functions in React that allow you to manage state and lifecycle features in functional components, which were traditionally only available in class components.
+- Hooks simplify the code and make it easier to manage complex logic and side effects in React components.
 
+## Types of Hooks are:
+
+## 1. useState:
+- The React useState Hook allows us to track state in a function component.
+- useState is a React Hook that lets you add a state variable to your component.
+
+```
+import { useState } from "react";
+
+  function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <div>The count is {count}</div>
+      <button onClick={()=>setCount(count+1)}>Update Count</button>
+    </>
+  )
+}
+```
+
+## 2. useEffect:
+-useEffect is a React Hook that lets you synchronize a component with an external system.
+- Call useEffect at the top level of your component to declare an Effect:
+```
+
+```
