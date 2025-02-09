@@ -148,5 +148,18 @@ import { useState } from "react";
 -useEffect is a React Hook that lets you synchronize a component with an external system.
 - Call useEffect at the top level of your component to declare an Effect:
 ```
+function Example() {
+  const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    console.log(`Count updated: ${count}`);
+  }, [count]); // Runs when 'count' changes
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
 ```
