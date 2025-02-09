@@ -147,10 +147,10 @@ import { useState } from "react";
 ## 2. useEffect:
 -useEffect is a React Hook that allows you to perform side effects in function components. It runs after the component renders and can be used for tasks like:
 
-✅ Fetching data from an API
-✅ Updating the DOM
-✅ Setting up event listeners
-✅ Managing timers or intervals
+- ✅ Fetching data from an API
+- ✅ Updating the DOM
+- ✅ Setting up event listeners
+- ✅ Managing timers or intervals
 - Call useEffect at the top level of your component to declare an Effect:
 ```
 function Example() {
