@@ -205,3 +205,37 @@ export default InputFocus;
 - When you change the ref.current property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
 - Do not write or read ref.current during rendering, except for initialization. This makes your component’s behavior unpredictable.
 - In Strict Mode, React will call your component function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. Each ref object will be created twice, but one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the behavior.
+
+
+## Handling Events:
+
+- Handling events in React is similar to handling events in regular JavaScript, but with some differences:
+ 1. Events are written in camelCase (onClick instead of onclick).
+ 2. Instead of strings, event handlers are passed as functions.
+
+```
+import { useState } from "react";
+
+function ClickCounter() {
+  const [count, setCount] = useState(0);
+
+  // Event handler function
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
+  return (
+    <div className="p-4 text-center">
+      <p className="text-xl">Count: {count}</p>
+      <button 
+        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
+        onClick={handleClick}
+      >
+        Click Me
+      </button>
+    </div>
+  );
+}
+
+export default ClickCounter;
+```
