@@ -279,3 +279,49 @@ const value = useContext(MyContext);
 ## Note
 
 - Component must be wrapped with the corresponding ```<Provider>```
+
+
+## 5. useMemo
+
+- The useMemo hook in React is used to optimize performance by memoizing (caching) the result of a computation so it doesn’t get recalculated on every render unless its dependencies change.
+
+## Syntax: 
+```
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+## How it works:
+- useMemo takes a function and a dependency array.
+- If the dependencies haven’t changed since the last render, React skips re-running the function and returns the cached value.
+- If they have changed, it recalculates.
+
+## Example: 
+```
+import { useMemo, useState } from 'react';
+
+function ExpensiveComponent({ number }) {
+  const [count, setCount] = useState(0);
+
+  const expensiveResult = useMemo(() => {
+    console.log("Calculating...");
+    let result = 0;
+    for (let i = 0; i < 1000000000; i++) {
+      result += number;
+    }
+    return result;
+  }, [number]);
+
+  return (
+    <div>
+      <h2>Expensive Result: {expensiveResult}</h2>
+      <button onClick={() => setCount(count + 1)}>Re-render</button>
+    </div>
+  );
+}
+```
+
+- Even when the count changes, the expensive calculation only runs when number changes.
+
+## When to use useMemo
+- Expensive calculations (like sorting/filtering large arrays).
+- Avoiding unnecessary recalculations.
+- Only when you notice performance issues — don’t overuse.
