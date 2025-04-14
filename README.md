@@ -240,3 +240,15 @@ function ClickCounter() {
 export default ClickCounter;
 ```
 
+## 4. useContext:
+
+- The useContext hook in React is used to access the value of a context directly inside a functional component, without having to wrap your component in a Consumer component.
+
+## When to use useContext:
+
+- Use it when you want to share data globally (like theme, user authentication, language preferences, etc.) across components, without prop-drilling (passing props through every intermediate component).
+
+## Basic Syntax:
+```
+const value = useContext(MyContext);
+```
