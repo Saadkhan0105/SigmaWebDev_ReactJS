@@ -325,3 +325,48 @@ function ExpensiveComponent({ number }) {
 - Expensive calculations (like sorting/filtering large arrays).
 - Avoiding unnecessary recalculations.
 - Only when you notice performance issues — don’t overuse.
+
+## 5. useCallback:
+- useCallback memoizes a function, preventing it from being recreated on every render unless its dependencies change.
+
+## Syntax:
+```
+const memoizedCallback = useCallback(() => {
+  // your logic here
+}, [dependencies]);
+```
+## 🧠 Why use it?
+- Useful when you Pass functions as props to child components.
+- When you want to avoid unnecessary re-renders of those children (especially when they’re wrapped in React.memo).
+- Need stable function references (e.g. for event handlers or useEffect deps).
+
+## Example:
+```
+import React, { useState, useCallback } from 'react';
+
+const Button = React.memo(({ handleClick }) => {
+  console.log('Button rendered');
+  return <button onClick={handleClick}>Click Me</button>;
+});
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount(prev => prev + 1);
+  }, []);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <Button handleClick={increment} />
+    </div>
+  );
+}
+```
+
+- Without useCallback, increment would be recreated on every render, causing Button to re-render unnecessarily. useCallback keeps the same function reference unless its dependencies change.
+
+## ⚠️ When not to use it
+- Don’t use it everywhere “just in case.”
+-	Only when you see performance issues or when function identity actually matters (e.g., with React.memo, useEffect, etc.).
