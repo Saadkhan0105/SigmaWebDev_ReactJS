@@ -370,3 +370,48 @@ function App() {
 ## ⚠️ When not to use it
 - Don’t use it everywhere “just in case.”
 -	Only when you see performance issues or when function identity actually matters (e.g., with React.memo, useEffect, etc.).
+
+
+## REDUX
+
+- Redux is a state management library commonly used with React (but usable with any JS framework).
+- It’s especially helpful when your app has complex state logic or many components needing access to the same data.
+
+## 🔧 Core Concepts of Redux
+
+- Store – The central place that holds the app’s state.
+- Actions – Plain JavaScript objects describing what happened (e.g., { type: 'ADD_ITEM' }).
+- Reducers – Functions that take the current state and an action, then return a new state.
+- Dispatch – The way to send actions to the store.
+- Selectors – Functions to retrieve specific parts of the state.
+
+## 🧠 Why Use Redux?
+- Predictable state management with a single source of truth.
+- Useful for debugging via tools like Redux DevTools.
+-	Encourages clean separation of UI and business logic.
+-	Ideal for large apps with shared or deeply nested state.
+
+## ⚛️ Redux + React
+- With React, you often use Redux through the react-redux library, which provides:
+
+	•	<Provider> to wrap your app and give access to the Redux store.
+
+	•	useSelector() to read data from the store.
+
+	•	useDispatch() to dispatch actions.
+
+## Example:
+```
+// Action
+const increment = () => ({ type: 'INCREMENT' });
+
+// Reducer
+function counterReducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { count: state.count + 1 };
+    default:
+      return state;
+  }
+}
+```
